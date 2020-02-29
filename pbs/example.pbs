@@ -1,0 +1,49 @@
+#!/bin/bash
+###############################################################################
+# A sample PBS script to subnit a job on 1 node
+#
+#  usage:
+#        (0) Edit this script
+#        (1) Submit the job.
+#            % qsub example.pbs
+#
+###############################################################################
+
+### Job name
+#PBS -N Job
+### Queue
+#PBS -q queue_name
+### Set group
+#PBS -W group_list=group_name
+### Keep all environmental variables
+#PBS -V
+### Change to the current working directory
+cd ${PBS_O_WORKDIR}
+
+
+MY_HOST=`hostname`
+MY_DATE=`date`
+#
+# Disable core dump. (Remove this line if you want to create core files)
+#
+ulimit -c 0
+
+echo "Running on $MY_HOST at $MY_DATE"
+echo "================================================================"
+
+#
+# Print envirionment
+#
+#echo "Running environment":
+#env | sort
+#echo "================================================================"
+
+#
+python ./example.py "$OUTPUTFILE" "$FILENUMBER"
+#./example.exe "$OUTPUTFILE" "$FILENUMBER"
+
+RET=$?
+echo "Exit status: $RET"
+echo "================================================================"
+END_DATE=`date`
+echo "End of run is $END_DATE"
