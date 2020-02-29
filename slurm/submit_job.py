@@ -11,7 +11,7 @@ Njob_total = 160
 Njob_limit = 100 
 Njob_limit_left = 30
 
-PBSFILE = 'example.pbs'
+SLFILE = 'example.sl'
 OUTPUTFILE = 'output.txt'
 
 #skip if the run already exists
@@ -19,8 +19,8 @@ skip_exist_run = False
 
 def main():
 
-    subprocess.call('rm -vf Job.e*', shell=True)
-    subprocess.call('rm -vf Job.o*', shell=True)
+    subprocess.call('rm -vf Job-*.err', shell=True)
+    subprocess.call('rm -vf Job-*.out', shell=True)
 
     for irange in range(len(runrange)):
         if (runrange[irange][1] < runrange[irange][0]):
@@ -36,8 +36,8 @@ def main():
             if skip_exist_run and check_file_exist(run):
                 continue
             while 1 :
-                Njob = subprocess.check_output('qstat | grep %s | wc -l '%user_name, shell=True)
-                Njob_left = Njob_total - int(subprocess.check_output('qstat | wc -l ', shell=True))
+                Njob = subprocess.check_output('squeue | grep %s | wc -l '%user_name, shell=True)
+                Njob_left = Njob_total - int(subprocess.check_output('squeue | wc -l ', shell=True))
                 if (int(Njob) < Njob_limit and int(Njob_left)>Njob_limit_left):
                     break
                 else :
@@ -45,7 +45,7 @@ def main():
                     time.sleep(10)
 
             print('Submit job : run %d'%run)
-            subprocess.check_output('env OUTPUTFILE=%s FILENUMBER=%d qsub %s' %(OUTPUTFILE,run,PBSFILE), shell=True)
+            subprocess.check_output('sbatch %s %s %d' %(SLFILE,OUTPUTFILE,run), shell=True)
             time.sleep(0.3)
 
 print('All Jobs are submitted.')
