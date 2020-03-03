@@ -17,4 +17,4 @@ else:
 for ch in ch_list:
     cmd = '~/tek/utils/tek_afg/tek_afg -i %s E:%s:OFF' % (ip_address,ch)
     print(cmd)
-    #subprocess.check_output(cmd, shell=True)
+    subprocess.check_output(cmd, shell=True)
