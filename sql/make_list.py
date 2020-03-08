@@ -12,7 +12,7 @@ OUTPUTFILE = FOLDER + 'list.txt'
 PHYLUM = 'chordata'
 
 #sql setting
-host_name = 'local'
+host_name = 'localhost'
 user_name = 'root'
 password = 'password'
 database = 'example_db'
@@ -63,10 +63,7 @@ def get_name_list():
         fwrite.write(new_line)
     fread.close()
     fwrite.close()
-    if host_name == 'local':
-        ret = subprocess.check_output('mysql -u %s --password=%s -D %s < %s'%(user_name,password,database,SQLTMPFILE), shell=True)
-    else:
-        ret = subprocess.check_output('mysql -h %s -u %s --password=%s -D %s < %s'%(host_name,user_name,password,database,SQLTMPFILE), shell=True)
+    ret = subprocess.check_output('mysql -h %s -u %s --password=%s -D %s < %s'%(host_name,user_name,password,database,SQLTMPFILE), shell=True)
     ret = ret.split()
     first_id = int(ret[4])
 
@@ -78,10 +75,7 @@ def get_name_list():
         fwrite.write(new_line)
     fread.close()
     fwrite.close()
-    if host_name == 'local':
-        ret = subprocess.check_output('mysql -u %s --password=%s -D %s < %s'%(user_name,password,database,SQLTMPFILE), shell=True)
-    else:
-        ret = subprocess.check_output('mysql -h %s -u %s --password=%s -D %s < %s'%(host_name,user_name,password,database,SQLTMPFILE), shell=True)
+    ret = subprocess.check_output('mysql -h %s -u %s --password=%s -D %s < %s'%(host_name,user_name,password,database,SQLTMPFILE), shell=True)
     ret = ret.split()
     last_id = int(ret[4])
 
@@ -99,10 +93,7 @@ def get_name_list():
         fread.close()
         fwrite.close()
 
-        if host_name == 'local':
-            ret = subprocess.check_output('mysql -u %s --password=%s -D %s < %s'%(user_name,password,database,SQLTMPFILE), shell=True)
-        else:
-            ret = subprocess.check_output('mysql -h %s -u %s --password=%s -D %s < %s'%(host_name,user_name,password,database,SQLTMPFILE), shell=True)
+        ret = subprocess.check_output('mysql -h %s -u %s --password=%s -D %s < %s'%(host_name,user_name,password,database,SQLTMPFILE), shell=True)
         if(ret):
             ret = ret.split()
             name = ret[5].decode('utf-8')
