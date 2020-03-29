@@ -1,0 +1,7 @@
+int,varchar(11),float
+id,name,score
+0,alice,0.9
+1,bob,0.4
+2,candy,0.55
+3,david,0.87
+4,elizabeth,0.64
