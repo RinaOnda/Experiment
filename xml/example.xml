@@ -1,0 +1,26 @@
+<Tables>
+   <Table>
+      <TableName>new_tb</TableName>
+
+      <Item>
+	 <name>alice</name>
+	 <score>0.9</score>
+      </Item>
+      <Item>
+	 <name>bob</name>
+	 <score>0.4</score>
+      </Item>
+      <Item>
+	 <name>candy</name>
+	 <score>0.55</score>
+      </Item>
+      <Item>
+	 <name>david</name>
+	 <score>0.87</score>
+      </Item>
+      <Item>
+	 <name>elizabeth</name>
+	 <score>0.64</score>
+      </Item>
+   </Table>
+</Tables>
