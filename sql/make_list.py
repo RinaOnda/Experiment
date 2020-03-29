@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+#make a list of animals belonging to a specific phylum
 
 import subprocess, sys, time, json, os
 
